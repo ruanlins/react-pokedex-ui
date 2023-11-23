@@ -1,0 +1,115 @@
+.searchBar {
+  min-width: 100%;
+  color: var(--color-wp);
+  background-color: var(--color-db);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.searchBar>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.searchBar label {
+  font-size: 1.5rem;
+}
+
+.searchBar input,
+.searchBar button {
+  width: 250px;
+  padding: 8px 16px;
+  border-radius: .25rem;
+  font-size: 1.25rem;
+}
+
+.searchBar button {
+  background-color: var(--color-darkred);
+  border: none;
+  cursor: pointer;
+}
+
+.searchBar button:hover {
+  color: var(--color-wt);
+}
+
+.searchBar button:active {
+  outline: 1px solid var(--color-red);
+}
+
+.searchBar span {
+  max-width: 25ch;
+  text-align: center;
+}
+
+/* SUGGETIONS */
+
+.suggestionsWrapper {
+  position: relative;
+}
+
+.suggestions {
+  text-align: left;
+  position: absolute;
+  width: 250px;
+  max-height: 300px;
+  border-radius: .25rem;
+  font-size: 1.25rem;
+  background-color: var(--color-wb);
+  color: var(--color-db);
+  overflow-y: auto;
+}
+
+.suggestions li {
+  border-bottom: 1px solid var(--color-db);
+  padding: 4px 8px;
+}
+
+.suggestions li:hover {
+  background-color: var(--color-db);
+  color: var(--color-wt);
+}
+
+/* Mobile */
+
+.searchBar.mobile {
+  visibility: hidden;
+  display: block;
+  height: 0px;
+  transition: .5s;
+  padding: 0px;
+  overflow-y: hidden;
+}
+
+.searchBar.mobile> :first-child {
+  margin-bottom: 10px;
+}
+
+.searchBar.mobile.active {
+  visibility: visible;
+  height: 230px;
+  transition: .5s;
+  padding: 10px;
+}
+
+.mobileContainer {
+  background-color: var(--color-db);
+}
+
+.mobileButton {
+  margin: 0 auto;
+  padding: 5px 20px;
+  background-color: transparent;
+  border: none;
+  transition: .3s;
+}
+
+.mobileButtonActive {
+  rotate: 180deg;
+  transition: .3s;
+}

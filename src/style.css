@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --color-red: #CE4343;
+  --color-darkred: #a53636;
+  --color-wt: #DCDCDC;
+  --color-wb: #e0e0e0;
+  --color-db: #353535;
+  --color-wp: #FFF;
+  --color-mt: #acacac;
+}
+
+body {
+  margin: 0px;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: var(--color-wb);
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+button,
+input {
+  font-family: 'Fira Sans', sans-serif;
+  display: block;
+}
+
+li {
+  list-style: none;
+}
+
+button.active {
+  transition: .3s;
+  filter: grayscale(0%) !important;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  text-transform: capitalize;
+}

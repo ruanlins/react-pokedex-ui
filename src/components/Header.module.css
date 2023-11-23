@@ -1,0 +1,110 @@
+.header {
+  min-width: 100%;
+  background: var(--color-red);
+  color: var(--color-wt);
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.link {
+  justify-self: start;
+}
+
+.logo {
+  width: 150px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-self: end;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0 25px;
+}
+
+.user {
+  justify-self: end;
+}
+
+/*MOBILE*/
+
+.iconContainer.mobile {
+  display: block;
+  position: absolute;
+  visibility: hidden;
+  height: 0px;
+  background-color: var(--color-db);
+  top: 55px;
+  border: solid 1px black;
+  transition: .3s;
+  overflow-y: hidden;
+}
+
+.iconContainer.mobile.active {
+  height: 124px;
+  visibility: visible;
+  transition: .3s;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.icon.mobile {
+  border-bottom: 1px solid black;
+  padding: 15px 30px;
+  flex-direction: row;
+}
+
+.mobileButton {
+  justify-self: end;
+  display: flex;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  gap: 0.5rem;
+  align-self: center;
+  justify-content: center;
+}
+
+#hamburger {
+  border-top: 2px solid;
+  width: 20px;
+}
+
+#hamburger::after,
+#hamburger::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  margin-top: 5px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.mobileButton.active #hamburger {
+  border-top-color: transparent;
+}
+
+.mobileButton.active #hamburger::before {
+  transform: rotate(135deg);
+}
+
+.mobileButton.active #hamburger::after {
+  transform: rotate(-135deg);
+  top: -7px;
+}

@@ -1,0 +1,10 @@
+.pokemonText {
+  background-color: var(--color-darkred);
+  padding: 10px;
+  border-radius: .25rem;
+}
+
+.pokemonText p {
+  font-size: 1.25rem;
+  color: var(--color-wp);
+}

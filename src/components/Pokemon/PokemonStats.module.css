@@ -1,0 +1,30 @@
+.statsContainer {
+  background-color: var(--color-darkred);
+  color: var(--color-wp);
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: .25rem;
+  padding: 10px;
+}
+
+.statsData {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1.25rem;
+}
+
+.statsData p {
+  margin: 10px;
+  font-weight: bold;
+}
+
+.statsData span {
+  color: var(--color-wt);
+}
+
+.dataContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}

@@ -1,0 +1,12 @@
+.notFoundContainer {
+  background-color: var(--color-wp);
+  padding: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.notFoundContainer a {
+  text-decoration: underline;
+  text-transform: lowercase;
+  color: cornflowerblue;
+}

@@ -1,0 +1,29 @@
+.infoContainer {
+  background-color: var(--color-darkred);
+  border-radius: .25rem;
+  color: var(--color-wt);
+  text-align: center;
+  padding: 10px;
+}
+
+.infoContainer h2 {
+  color: var(--color-wp);
+}
+
+.infoData {
+  display: flex;
+  justify-content: space-around;
+}
+
+.infoData span,
+.infoData p {
+  display: block;
+  margin-top: 10px;
+  text-transform: capitalize;
+  font-size: 1.25rem;
+}
+
+.infoData p {
+  color: var(--color-wp);
+  font-weight: bold;
+}
