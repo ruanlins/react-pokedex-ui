@@ -1,0 +1,24 @@
+.link {
+  justify-self: start;
+}
+
+.logo {
+  width: 150px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-self: end;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0 25px;
+}
+
+.user {
+  justify-self: end;
+}

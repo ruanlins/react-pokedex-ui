@@ -1,0 +1,72 @@
+.iconContainer.mobile {
+  display: block;
+  position: absolute;
+  visibility: hidden;
+  height: 0px;
+  background-color: var(--color-db);
+  top: 50px;
+  right: 5px;
+  border: solid 1px black;
+  transition: .3s;
+  overflow-y: hidden;
+}
+
+.iconContainer.mobile.active {
+  height: 124px;
+  visibility: visible;
+  transition: .3s;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.icon.mobile {
+  display: flex;
+  border-bottom: 1px solid black;
+  padding: 15px 30px;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.mobileButton {
+  justify-self: end;
+  display: flex;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  gap: 0.5rem;
+  align-self: center;
+  justify-content: center;
+}
+
+#hamburger {
+  border-top: 2px solid;
+  width: 20px;
+}
+
+#hamburger::after,
+#hamburger::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  margin-top: 5px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.mobileButton.active #hamburger {
+  border-top-color: transparent;
+}
+
+.mobileButton.active #hamburger::before {
+  transform: rotate(135deg);
+}
+
+.mobileButton.active #hamburger::after {
+  transform: rotate(-135deg);
+  top: -7px;
+}
