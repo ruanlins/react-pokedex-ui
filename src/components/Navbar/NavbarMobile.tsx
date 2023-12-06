@@ -4,9 +4,15 @@ import styles from './NavbarMobile.module.css';
 import Button from '../Forms/Button';
 import pokeball from '../../assets/pokeball.svg';
 import favorite from '../../assets/favorite.svg';
+import login from '../../assets/userLogin.svg';
+import logout from '../../assets/userLogout.svg';
+import { useUserContext } from '../../Contexts/UserContext';
 
 const NavbarMobile = () => {
   const [mobileMenu, setMobileMenu] = React.useState(false);
+
+  const { user } = useUserContext();
+
   return (
     <>
       <Button className={`${styles.mobileButton} ${mobileMenu && styles.active}`} onClick={() => setMobileMenu(!mobileMenu)}>
@@ -25,6 +31,12 @@ const NavbarMobile = () => {
             <p>Favorites</p>
           </div>
         </NavLink>
+        <div>
+          <div onClick={() => setMobileMenu(false)} className={`${styles.icon} ${styles.mobile} `}>
+            <img src={user ? logout : login} width={30} />
+            <p>{user ? 'Logout' : 'Login'}</p>
+          </div>
+        </div>
       </div>
     </>
   );
