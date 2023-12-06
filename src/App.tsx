@@ -4,13 +4,13 @@ import SearchBar from './components/SearchBar';
 import Pokemon from './Pages/Pokemon';
 import Favorites from './Pages/Favorites';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { FavContextProvider } from './Contexts/FavContext';
 import NotFound from './Pages/NotFound';
+import { UserContextProvider } from './Contexts/UserContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <FavContextProvider>
+      <UserContextProvider>
         <Header />
         <main>
           <SearchBar />
@@ -21,7 +21,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-      </FavContextProvider>
+      </UserContextProvider>
     </BrowserRouter>
   );
 }

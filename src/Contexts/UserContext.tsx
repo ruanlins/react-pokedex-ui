@@ -18,6 +18,7 @@ const UserContext = React.createContext<IUserContext | null>(null);
 export const useUserContext = () => {
   const context = React.useContext(UserContext);
   if (!context) throw new Error('useUserCOntext must be in FavContextProvider');
+  return context;
 };
 
 export const UserContextProvider = ({ children }: React.PropsWithChildren) => {

@@ -3,8 +3,13 @@ import styles from './NavbarDesktop.module.css';
 import { NavLink } from 'react-router-dom';
 import pokeball from '../../assets/pokeball.svg';
 import favorite from '../../assets/favorite.svg';
+import login from '../../assets/userLogin.svg';
+import logout from '../../assets/userLogout.svg';
+import { useUserContext } from '../../Contexts/UserContext';
 
 const NavbarDesktop = () => {
+  const { user } = useUserContext();
+
   return (
     <div className={`${styles.iconContainer}`}>
       <NavLink to="/">
@@ -19,6 +24,12 @@ const NavbarDesktop = () => {
           <p>Favorites</p>
         </div>
       </NavLink>
+      <div>
+        <div className={`${styles.icon} ${styles.mobile} `}>
+          <img src={user ? logout : login} width={30} />
+          <p>{user ? 'Logout' : 'Login'}</p>
+        </div>
+      </div>
     </div>
   );
 };

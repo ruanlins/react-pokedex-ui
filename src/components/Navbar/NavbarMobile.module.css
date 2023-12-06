@@ -12,10 +12,9 @@
 }
 
 .iconContainer.mobile.active {
-  height: 124px;
+  height: 186px;
   visibility: visible;
   transition: .3s;
-  overflow-y: auto;
   z-index: 1000;
 }
 
