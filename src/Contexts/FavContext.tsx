@@ -51,11 +51,7 @@ export const FavContextProvider = ({ children }: React.PropsWithChildren) => {
     }
   };
 
-  return (
-    <FavContext.Provider value={{ favorites, handleStorage }}>
-      {children}
-    </FavContext.Provider>
-  );
+  return <FavContext.Provider value={{ favorites, handleStorage }}>{children}</FavContext.Provider>;
 };
 
 export default FavContext;
