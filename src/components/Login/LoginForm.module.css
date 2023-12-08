@@ -1,0 +1,58 @@
+.loginForm {
+  margin-top: 50px;
+}
+
+.loginForm h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.loginForm input,
+.loginForm button,
+.loginForm p {
+  margin-bottom: 15px;
+}
+
+.loginForm label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.loginForm input {
+  padding: 8px;
+  font-size: 16px;
+  width: 300px;
+  background-color: var(--color-wt);
+  border: 1px solid var(--color-wt);
+  border-radius: 5px;
+  transition: .3s;
+}
+
+.loginForm input:hover,
+.loginForm input:focus {
+  outline: none;
+  border-color: var(--color-red);
+}
+
+.loginForm button {
+  background-color: var(--color-red);
+  color: var(--color-wt);
+  border: none;
+  border-radius: 5px;
+  padding: 12px 36px;
+  font-size: 16px;
+}
+
+.loginRegister {
+  margin-top: 90px;
+}
+
+@media(max-width:800px) {
+  .loginForm {
+    margin-top: 20px;
+  }
+
+  .loginRegister {
+    margin-top: 50px;
+  }
+}

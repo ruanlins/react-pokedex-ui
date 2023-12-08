@@ -1,0 +1,58 @@
+.loginCreate {
+  margin-top: 50px;
+}
+
+.loginCreate h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.loginCreate input,
+.loginCreate button,
+.loginCreate p {
+  margin-bottom: 15px;
+}
+
+.loginCreate label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.loginCreate input {
+  padding: 8px;
+  font-size: 16px;
+  width: 300px;
+  background-color: var(--color-wt);
+  border: 1px solid var(--color-wt);
+  border-radius: 5px;
+  transition: .3s;
+}
+
+.loginCreate input:hover,
+.loginCreate input:focus {
+  outline: none;
+  border-color: var(--color-red);
+}
+
+.loginCreate button {
+  background-color: var(--color-red);
+  color: var(--color-wt);
+  border: none;
+  border-radius: 5px;
+  padding: 12px 36px;
+  font-size: 16px;
+}
+
+.registerLogin {
+  margin-top: 90px;
+}
+
+@media(max-width:800px) {
+  .loginCreate {
+    margin-top: 20px;
+  }
+
+  .registerLogin {
+    margin-top: 50px;
+  }
+}
