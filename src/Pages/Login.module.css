@@ -1,0 +1,27 @@
+.login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  min-height: calc(100vh - 250px);
+  background-color: var(--color-wp);
+}
+
+.login::before {
+  content: '';
+  margin: 20px;
+  display: block;
+  background: url(../assets/pikachuLogin.png) no-repeat center center;
+  background-size: contain;
+}
+
+@media(max-width:800px) {
+  .login {
+    gap: 0px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .login::before {
+    display: none;
+  }
+}

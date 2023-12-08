@@ -5,6 +5,7 @@ import React from 'react';
 import useFetch from '../Hooks/useFetch';
 import { Link, useNavigate } from 'react-router-dom';
 import useMedia from '../Hooks/useMedia';
+import arrow from '../assets/arrow.png';
 
 type Data = {
   results: Pokemon[];
@@ -83,7 +84,7 @@ const SearchBar = () => {
       {mobile && (
         <div className={styles.mobileContainer}>
           <Button className={`${styles.mobileButton} ${mobileMenu && styles.mobileButtonActive}`} onClick={() => setMobileMenu(!mobileMenu)}>
-            <img src="./src/assets/arrow.png" alt="" width={30} />
+            <img src={arrow} alt="" width={30} />
           </Button>
         </div>
       )}

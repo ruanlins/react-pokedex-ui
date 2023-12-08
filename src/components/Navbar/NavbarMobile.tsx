@@ -31,12 +31,21 @@ const NavbarMobile = () => {
             <p>Favorites</p>
           </div>
         </NavLink>
-        <div>
-          <div onClick={() => setMobileMenu(false)} className={`${styles.icon} ${styles.mobile} `}>
-            <img src={user ? logout : login} width={30} />
-            <p>{user ? 'Logout' : 'Login'}</p>
+        {user ? (
+          <div>
+            <div onClick={() => setMobileMenu(false)} className={`${styles.icon} ${styles.mobile} `}>
+              <img src={logout} width={30} />
+              <p>Logout</p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <NavLink to={'/login'}>
+            <div onClick={() => setMobileMenu(false)} className={`${styles.icon} ${styles.mobile} `}>
+              <img src={login} width={30} />
+              <p>Login</p>
+            </div>
+          </NavLink>
+        )}
       </div>
     </>
   );
