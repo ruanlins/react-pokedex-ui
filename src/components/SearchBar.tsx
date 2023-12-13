@@ -6,6 +6,7 @@ import useFetch from '../Hooks/useFetch';
 import { Link, useNavigate } from 'react-router-dom';
 import useMedia from '../Hooks/useMedia';
 import arrow from '../assets/arrow.png';
+import { useForm } from 'react-hook-form';
 
 type Data = {
   results: Pokemon[];
@@ -24,6 +25,7 @@ const SearchBar = () => {
   const mobile = useMedia('(max-width: 40rem)');
   const navigate = useNavigate();
   const { data } = useFetch<Data>('https://pokeapi.co/api/v2/pokemon-species?limit=2000&offset=0');
+  const { register } = useForm();
 
   React.useEffect(() => {
     if (data) {
@@ -56,9 +58,9 @@ const SearchBar = () => {
         <div>
           <div className={styles.suggestionsWrapper}>
             <Input
-              label="Search"
-              id="search"
               name="search"
+              label="Search"
+              register={register}
               onChange={(e) => onChangeHandler(e.target.value)}
               onClick={() => setSearchValue('')}
               value={searchValue}

@@ -1,14 +1,18 @@
 import React from 'react';
+import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 type InputType = React.ComponentProps<'input'> & {
+  name: string;
   label: string;
+  register: UseFormRegister<any>;
+  registerOptions?: RegisterOptions;
 };
 
-const Input = ({ label, id, ...props }: InputType) => {
+const Input = ({ name, label, register, registerOptions, ...props }: InputType) => {
   return (
     <>
-      <label htmlFor={id}>{label}</label>
-      <input type="text" id={id} name={id} {...props} />
+      <label htmlFor={name}>{label}</label>
+      <input {...props} {...register(name, registerOptions)} />
     </>
   );
 };

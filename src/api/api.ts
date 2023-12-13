@@ -35,7 +35,6 @@ export async function signUp(credentials: SignUpCredentials): Promise<User> {
 
 export type LoginCredentials = {
   username: string;
-  email: string;
   password: string;
 };
 
