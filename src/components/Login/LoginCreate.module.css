@@ -7,15 +7,10 @@
   margin-bottom: 15px;
 }
 
-.loginCreate input,
-.loginCreate button,
-.loginCreate p {
-  margin-bottom: 15px;
-}
-
 .loginCreate label {
   display: inline-block;
   margin-bottom: 5px;
+  margin-top: 20px;
 }
 
 .loginCreate input {
@@ -41,10 +36,17 @@
   border-radius: 5px;
   padding: 12px 36px;
   font-size: 16px;
+  margin-top: 15px;
 }
 
 .registerLogin {
   margin-top: 90px;
+}
+
+.error {
+  color: var(--color-red);
+  display: block;
+  margin-top: 5px;
 }
 
 @media(max-width:800px) {
