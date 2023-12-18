@@ -39,7 +39,7 @@ export type LoginCredentials = {
 };
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-  const response = await fetchData('/login', {
+  const response = await fetchData('http://localhost:5000/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

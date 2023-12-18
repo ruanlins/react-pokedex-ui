@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Input from '../Forms/Input';
 import { useForm } from 'react-hook-form';
 import { LoginCredentials } from '../../api/api';
+import { useUserContext } from '../../Contexts/UserContext';
 
 const LoginForm = () => {
   const {
@@ -13,10 +14,20 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginCredentials>();
 
+  const { userLogin, error } = useUserContext();
+
+  async function onSubmit(credentials: LoginCredentials) {
+    try {
+      userLogin(credentials);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={`${styles.loginForm} animeLeft`}>
       <h1>Log in</h1>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           name="username"
           label="Username"
@@ -34,7 +45,8 @@ const LoginForm = () => {
           registerOptions={{ required: { value: true, message: 'Password is required' } }}
         />
         {errors && <span className={styles.error}>{errors.password?.message}</span>}
-        <Button>Log in</Button>
+        <Button disabled={isSubmitting}>Log in</Button>
+        <p className={styles.error}>{error}</p>
       </form>
       <div className={styles.loginRegister}>
         <h1>Register</h1>
