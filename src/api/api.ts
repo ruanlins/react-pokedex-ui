@@ -12,7 +12,7 @@ export async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser() {
-  const response = await fetchData('/', { method: 'GET' });
+  const response = await fetchData('http://localhost:5000/', { method: 'GET' });
   return response.json();
 }
 
@@ -23,7 +23,7 @@ export type SignUpCredentials = {
 };
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-  const response = await fetchData('/signup', {
+  const response = await fetchData('http://localhost:5000/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
