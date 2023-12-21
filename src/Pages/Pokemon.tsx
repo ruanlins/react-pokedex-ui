@@ -7,9 +7,9 @@ import PokemonStats from '../components/Pokemon/PokemonStats';
 import Button from '../components/Forms/Button';
 import Image from '../components/Helper/Image';
 import { useParams } from 'react-router-dom';
-import { useFav } from '../Contexts/FavContext';
 import Loading from '../components/Helper/Loading';
 import Error from '../components/Helper/Error';
+import { useUserContext } from '../Contexts/UserContext';
 
 type Pokemon = {
   name: string;
@@ -51,7 +51,7 @@ const Pokemon = () => {
 
   const pokemon = useFetch<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
-  const { favorites } = useFav();
+  const { favorites, addPokemon, removePokemon } = useUserContext();
 
   React.useEffect(() => {
     setShiny(false);
@@ -60,8 +60,6 @@ const Pokemon = () => {
   function handleClick() {
     setShiny((shiny) => !shiny);
   }
-
-  const { handleStorage } = useFav();
 
   if (pokemon.error || pokemonSpecies.error) return <Error />;
   if (pokemon.loading && pokemonSpecies.loading) return <Loading />;
@@ -73,9 +71,9 @@ const Pokemon = () => {
             {pokemon.data.name} <span>N°{pokemon.data.id.toString().padStart(4, '0')}</span>
           </h1>
           {favorites?.includes(pokemon.data.name) ? (
-            <p onClick={() => handleStorage(pokemon.data!.name)}>&#128151;</p>
+            <p onClick={() => removePokemon(pokemon.data!.name)}>&#128151;</p>
           ) : (
-            <p onClick={() => handleStorage(pokemon.data!.name)}>&#128420;</p>
+            <p onClick={() => addPokemon(pokemon.data!.name)}>&#128420;</p>
           )}
         </div>
         <div className={styles.pokemonData}>

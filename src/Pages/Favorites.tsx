@@ -28,7 +28,7 @@ const Favorites = () => {
           const pokemonObj: PokemonObj[] = await Promise.all(promises);
           setPokemons((prev) => [...prev, ...pokemonObj]);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         } finally {
           setLoading(false);
         }
