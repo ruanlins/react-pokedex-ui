@@ -12,7 +12,7 @@ export async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser() {
-  const response = await fetchData('http://localhost:5000/', { method: 'GET' });
+  const response = await fetchData('/user', { method: 'GET' });
   return response.json();
 }
 
@@ -23,7 +23,7 @@ export type SignUpCredentials = {
 };
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
-  const response = await fetchData('http://localhost:5000/signup', {
+  const response = await fetchData('/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export type LoginCredentials = {
 };
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-  const response = await fetchData('http://localhost:5000/login', {
+  const response = await fetchData('/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -50,18 +50,18 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 }
 
 export async function logout() {
-  await fetchData('/logout', { method: 'POST' });
+  await fetchData('/user/logout', { method: 'POST' });
 }
 
 export async function addPokemon(pokeName: string) {
-  await fetchData('/favorites/add', { method: 'POST', body: JSON.stringify(pokeName) });
+  await fetchData('/user/favorites/add', { method: 'POST', body: JSON.stringify(pokeName) });
 }
 
 export async function removePokemon(pokeName: string) {
-  await fetchData('/favorites/remove', { method: 'POST', body: JSON.stringify(pokeName) });
+  await fetchData('/user/favorites/remove', { method: 'POST', body: JSON.stringify(pokeName) });
 }
 
 export async function getFavorites() {
-  const reponse = await fetchData('/favorites', { method: 'GET' });
+  const reponse = await fetchData('/user/favorites', { method: 'GET' });
   return reponse.json();
 }

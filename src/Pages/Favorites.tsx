@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './Favorites.module.css';
 import PokedexCard from '../components/Pokedex/PokedexCard';
-import { useFav } from '../Contexts/FavContext';
-import Loading from '../components/Helper/Loading';
 import Image from '../components/Helper/Image';
+import { useUserContext } from '../Contexts/UserContext';
+import { Link } from 'react-router-dom';
+import Loading from '../components/Helper/Loading';
 
 export type PokemonObj = {
   name: string;
@@ -13,25 +14,39 @@ export type PokemonObj = {
 const Favorites = () => {
   const [pokemons, setPokemons] = React.useState<PokemonObj[]>([]);
   const [loading, setLoading] = React.useState(false);
-  const { favorites } = useFav();
+  const { user, favorites } = useUserContext();
 
   React.useEffect(() => {
     const pokeObj = async () => {
-      if (favorites) {
-        setLoading(true);
-        const promises = favorites.map(async (pokemon) => {
-          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-          return await response.json();
-        });
-        const pokemonObj: PokemonObj[] = await Promise.all(promises);
-        setPokemons((prev) => [...prev, ...pokemonObj]);
-        setLoading(false);
+      if (user && favorites) {
+        try {
+          setLoading(true);
+          const promises = favorites.map(async (pokemon) => {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+            return await response.json();
+          });
+          const pokemonObj: PokemonObj[] = await Promise.all(promises);
+          setPokemons((prev) => [...prev, ...pokemonObj]);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
     pokeObj();
-  }, [favorites]);
+  }, [user, favorites]);
 
   if (loading) return <Loading />;
+  if (!user)
+    return (
+      <div className={styles.wrapper}>
+        <p>It seems you aren't logged yet!</p>
+        <p>
+          Click <Link to="/login">here</Link> to log in or register yourself!
+        </p>
+      </div>
+    );
   if (favorites?.length === 0 || favorites === null)
     return (
       <div className={styles.wrapper}>
