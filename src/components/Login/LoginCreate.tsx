@@ -20,7 +20,7 @@ const LoginCreate = () => {
     try {
       userSignup(credentials);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

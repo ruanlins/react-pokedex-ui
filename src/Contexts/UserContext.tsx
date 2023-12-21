@@ -35,7 +35,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
         const loggedUser = await UserApi.getLoggedInUser();
         setUser(loggedUser);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     fetchLoggedUser();
@@ -104,6 +104,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
+        console.error(error);
       }
     } finally {
       setLoading(false);
@@ -117,6 +118,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
+        console.error(error);
       }
     } finally {
       setLoading(false);

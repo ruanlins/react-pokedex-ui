@@ -54,11 +54,23 @@ export async function logout() {
 }
 
 export async function addPokemon(pokeName: string) {
-  await fetchData('/user/favorites/add', { method: 'POST', body: JSON.stringify(pokeName) });
+  await fetchData('/user/favorites/add', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ 'pokeName': pokeName }),
+  });
 }
 
 export async function removePokemon(pokeName: string) {
-  await fetchData('/user/favorites/remove', { method: 'POST', body: JSON.stringify(pokeName) });
+  await fetchData('/user/favorites/remove', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ 'pokeName': pokeName }),
+  });
 }
 
 export async function getFavorites() {
