@@ -16,6 +16,8 @@ const Favorites = () => {
   const [loading, setLoading] = React.useState(false);
   const { user, favorites } = useUserContext();
 
+  console.log(favorites);
+
   React.useEffect(() => {
     const pokeObj = async () => {
       if (user && favorites) {
