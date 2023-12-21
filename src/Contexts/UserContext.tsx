@@ -11,6 +11,7 @@ type IUserContext = {
   error: string | null;
   loading: boolean;
   user: User | null;
+  favorites: string[];
 };
 
 const UserContext = React.createContext<IUserContext | null>(null);
@@ -23,6 +24,7 @@ export const useUserContext = () => {
 
 export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   const [user, setUser] = React.useState<User | null>(null);
+  const [favorites, setFavorites] = React.useState([]);
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
 
@@ -38,6 +40,21 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     }
     fetchLoggedUser();
   }, []);
+
+  //get logged user favorites pokemons
+  React.useEffect(() => {
+    async function getFavorites() {
+      if (user) {
+        try {
+          const userFavorites = await UserApi.getFavorites();
+          setFavorites(userFavorites);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+    getFavorites();
+  }, [user]);
 
   async function userLogin(credentials: UserApi.LoginCredentials) {
     try {
@@ -73,9 +90,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
       await UserApi.logout();
       setUser(null);
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      }
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -108,7 +123,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   }
 
   return (
-    <UserContext.Provider value={{ userSignup, userLogin, userLogout, addPokemon, removePokemon, user, error, loading }}>
+    <UserContext.Provider value={{ userSignup, userLogin, userLogout, addPokemon, removePokemon, user, favorites, error, loading }}>
       {children}
     </UserContext.Provider>
   );

@@ -47,7 +47,7 @@ const LoginCreate = () => {
           register={register}
           registerOptions={{
             required: { value: true, message: 'Email is required' },
-            pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, message: 'Email format not valid' },
+            pattern: { value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, message: 'Email format not valid' },
           }}
         />
         {errors && <span className={styles.error}>{errors.email?.message}</span>}
