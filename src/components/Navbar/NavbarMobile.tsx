@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './NavbarMobile.module.css';
 import Button from '../Forms/Button';
 import pokeball from '../../assets/pokeball.svg';
@@ -11,7 +11,19 @@ import { useUserContext } from '../../Contexts/UserContext';
 const NavbarMobile = () => {
   const [mobileMenu, setMobileMenu] = React.useState(false);
 
-  const { user } = useUserContext();
+  const { user, userLogout } = useUserContext();
+
+  const navigate = useNavigate();
+
+  async function handleClick() {
+    setMobileMenu(false);
+    try {
+      userLogout();
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -33,7 +45,7 @@ const NavbarMobile = () => {
         </NavLink>
         {user ? (
           <div>
-            <div onClick={() => setMobileMenu(false)} className={`${styles.icon} ${styles.mobile} `}>
+            <div onClick={handleClick} className={`${styles.icon} ${styles.mobile} `}>
               <img src={logout} width={30} />
               <p>Logout</p>
             </div>
