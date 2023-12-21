@@ -89,6 +89,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
       setLoading(true);
       await UserApi.logout();
       setUser(null);
+      setFavorites([]);
     } catch (error) {
       console.error(error);
     } finally {
