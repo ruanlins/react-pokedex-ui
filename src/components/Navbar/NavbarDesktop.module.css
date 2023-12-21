@@ -22,3 +22,7 @@
 .user {
   justify-self: end;
 }
+
+.logout {
+  cursor: pointer;
+}
