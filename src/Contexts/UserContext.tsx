@@ -1,6 +1,7 @@
 import React from 'react';
 import { User } from '../types/types';
 import * as UserApi from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 type IUserContext = {
   userSignup: (credentials: UserApi.SignUpCredentials) => void;
@@ -11,22 +12,25 @@ type IUserContext = {
   error: string | null;
   loading: boolean;
   user: User | null;
-  favorites: string[];
+  favorites: string[] | null;
+  // getFavorites: () => void;
 };
 
 const UserContext = React.createContext<IUserContext | null>(null);
 
 export const useUserContext = () => {
   const context = React.useContext(UserContext);
-  if (!context) throw new Error('useUserCOntext must be in FavContextProvider');
+  if (!context) throw new Error('useUserContext must be in UserContextProvider');
   return context;
 };
 
 export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
   const [user, setUser] = React.useState<User | null>(null);
-  const [favorites, setFavorites] = React.useState([]);
+  const [favorites, setFavorites] = React.useState<[] | null>(null);
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
+
+  const navigate = useNavigate();
 
   //get the logged user
   React.useEffect(() => {
@@ -56,11 +60,25 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     getFavorites();
   }, [user]);
 
+  //get logged user favorites pokemons when
+  //click on add or remove button
+  async function getFavorites() {
+    if (user) {
+      try {
+        const userFavorites = await UserApi.getFavorites();
+        setFavorites(userFavorites);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
   async function userLogin(credentials: UserApi.LoginCredentials) {
     try {
       setLoading(true);
       const user = await UserApi.login(credentials);
       setUser(user);
+      navigate('/favorites');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -75,6 +93,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
       setLoading(true);
       const newUser = await UserApi.signUp(credentials);
       setUser(newUser);
+      navigate('/favorites');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -101,6 +120,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     try {
       setLoading(true);
       await UserApi.addPokemon(name);
+      getFavorites();
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -115,6 +135,7 @@ export const UserContextProvider = ({ children }: React.PropsWithChildren) => {
     try {
       setLoading(true);
       await UserApi.removePokemon(name);
+      getFavorites();
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);

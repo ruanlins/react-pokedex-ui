@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Forms/Button';
 import styles from './LoginForm.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Input from '../Forms/Input';
 import { useForm } from 'react-hook-form';
 import { LoginCredentials } from '../../api/api';
@@ -16,12 +16,9 @@ const LoginForm = () => {
 
   const { userLogin, error } = useUserContext();
 
-  const navigate = useNavigate();
-
   async function onSubmit(credentials: LoginCredentials) {
     try {
       userLogin(credentials);
-      navigate('/favorites');
     } catch (error) {
       console.error(error);
     }
